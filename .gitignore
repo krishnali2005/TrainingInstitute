@@ -1,0 +1,16 @@
+# Compiled Java Class files
+target/
+**.class
+src/main/webapp/WEB-INF/classes/
+
+# Tomcat local configuration & runtime files
+.metadata/
+Work/
+Log/
+*.log
+
+# macOS system files
+.DS_Store
+
+# Configuration secrets file
+src/main/resources/config.properties
