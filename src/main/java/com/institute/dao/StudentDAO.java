@@ -38,7 +38,9 @@ public class StudentDAO {
         stmtStudent.setString(5, student.getEmail()); // Link them via the email/username
         stmtStudent.executeUpdate();
 
-        conn.commit(); // Commit both safely
+        conn.commit();
+        // Sends the automated registration email seamlessly
+EmailService.sendWelcomeEmail(student.getEmail(), student.getStudentName()); // Commit both safely
         return true;
     } catch (SQLException e) {
         if (conn != null) {

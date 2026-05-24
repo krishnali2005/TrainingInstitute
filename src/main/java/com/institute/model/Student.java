@@ -6,7 +6,7 @@ public class Student {
     private String email;
     private String course;
     private String phone;
-
+    private String photoPath;
     // Constructor
     public Student() {}
 
@@ -25,4 +25,7 @@ public class Student {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    public String getPhotoPath() { return photoPath; }
+    public void setPhotoPath(String path) { this.photoPath = path; }
 }

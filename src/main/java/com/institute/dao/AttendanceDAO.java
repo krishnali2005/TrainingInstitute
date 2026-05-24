@@ -76,4 +76,30 @@ public class AttendanceDAO {
         if (totalClasses == 0) return 0.0;
         return ((double) presentCount / totalClasses) * 100;
     }
+    public double getAttendancePercentage(int studentId) {
+    String totalQuery = "SELECT COUNT(*) FROM attendance WHERE student_id = ?";
+    String presentQuery = "SELECT COUNT(*) FROM attendance WHERE student_id = ? AND status = 'Present'";
+    
+    try (Connection conn = DBConnection.getConnection()) {
+        int totalDays = 0;
+        int presentDays = 0;
+        
+        try (PreparedStatement stmt = conn.prepareStatement(totalQuery)) {
+            stmt.setInt(1, studentId);
+            try (ResultSet rs = stmt.executeQuery()) { if (rs.next()) totalDays = rs.getInt(1); }
+        }
+        
+        try (PreparedStatement stmt = conn.prepareStatement(presentQuery)) {
+            stmt.setInt(1, studentId);
+            try (ResultSet rs = stmt.executeQuery()) { if (rs.next()) presentDays = rs.getInt(1); }
+        }
+        
+        if (totalDays == 0) return 100.0; // Assume perfect status if no logs posted yet
+        return ((double) presentDays / totalDays) * 100.0;
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0.0;
+    }
+}
 }

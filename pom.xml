@@ -27,5 +27,10 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>jakarta.mail</artifactId>
+    <version>1.6.7</version>
+</dependency>
     </dependencies>
 </project>
